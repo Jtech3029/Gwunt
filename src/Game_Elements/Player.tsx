@@ -1,29 +1,29 @@
 import Row from "./Row";
-import Card from "../UI_Elements/Card";
-import { useState } from "react";
+import { useState, type FC } from "react";
 import PlayerHand from "./PlayerHand";
 
 interface PlayerProps {
     playerType: boolean,
-    initialCards: React.ReactElement[],
+    initialCards: FC[],
+    remainingCards: (Cards) => void
 }
 
-enum rowType {
-    MELEE = "MELEE",
-    RANGED = "RANGED",
-    SUPPORT = "SUPPORT",
+const rowType = {
+    MELEE: "MELEE",
+    RANGED: "RANGED",
+    SUPPORT: "SUPPORT",
 }
+const Player: FC<PlayerProps> = (props: PlayerProps) => {
+    const [cardsInHand, setCardsInHand] = useState<FC[]>(props.initialCards);
+    const [row1Cards, setRow1Cards] = useState<FC[]>([]);
+    const [row2Cards, setRow2Cards] = useState<FC[]>([]);
+    const [row3Cards, setRow3Cards] = useState<FC[]>([]);
+    const [cardPlayed, setCardPlayed] = useState<FC | null>(null);
 
-export default function Player(props: PlayerProps) {
-    const [cardsInHand, setCardsInHand] = useState<React.ReactElement[]>(props.initialCards);
-    const [row1Cards, setRow1Cards] = useState<React.ReactElement[]>([]);
-    const [row2Cards, setRow2Cards] = useState<React.ReactElement[][]>([]);
-    const [row3Cards, setRow3Cards] = useState<React.ReactElement[][]>([]);
-    
-
-    const moveCardToRow = (card: typeof Card, rowNumber: number) => {
+    const moveCardToRow = (card: FC, rowNumber: number) => {
         // Remove card from hand
-
+        const index = cardsInHand.indexOf(card);
+        const newCardHand = cardsInHand.slice(0,index);
         // Add card to the specified row
         switch (rowNumber) {
             case 1:
@@ -44,7 +44,10 @@ export default function Player(props: PlayerProps) {
             <Row type={rowType.MELEE} cards={row1Cards}/>
             <Row cards={row2Cards}/>
             <Row cards={row3Cards}/>
-            <PlayerHand cards={cardsInHand}/>
+            <PlayerHand cards={cardsInHand} setCardPlayed={setCardPlayed}/>
         </>
     )
 }
+
+
+export default Player;

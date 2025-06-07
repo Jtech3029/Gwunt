@@ -1,4 +1,5 @@
 import "./App.css";
+import Player from "./Game_Elements/Player";
 import Card from "./UI_Elements/Card";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <Card />
       <Card />
+      <Player />
     </>
   );
 }
