@@ -1,5 +1,5 @@
 import Row from "./Row";
-import { useState, type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import PlayerHand from "./PlayerHand";
 
 interface PlayerProps {
@@ -13,38 +13,59 @@ const rowType = {
     RANGED: "RANGED",
     SUPPORT: "SUPPORT",
 }
+
 const Player: FC<PlayerProps> = (props: PlayerProps) => {
-    const [cardsInHand, setCardsInHand] = useState<FC[]>(props.initialCards);
+    //dummy code that generates initial cards for now
+    //TODO: delete this code after implementing the real cards
+    const initialCards: FC[] = [];
+
+    for (let index = 0; index < 11; index++) {
+        initialCards.push(() => {
+            return (() => {
+                return(
+                    <div>Card {1+index}</div>
+                )
+            })();
+        }
+    )
+    }
+
+    const [cardsInHand, setCardsInHand] = useState<FC[]>(initialCards);
     const [row1Cards, setRow1Cards] = useState<FC[]>([]);
     const [row2Cards, setRow2Cards] = useState<FC[]>([]);
     const [row3Cards, setRow3Cards] = useState<FC[]>([]);
-    const [cardPlayed, setCardPlayed] = useState<FC | null>(null);
+    const [cardPlayed, setCardPlayed] = useState<number>(-1);
 
-    const moveCardToRow = (card: FC, rowNumber: number) => {
-        // Remove card from hand
-        const index = cardsInHand.indexOf(card);
-        const newCardHand = cardsInHand.slice(0,index);
-        // Add card to the specified row
-        switch (rowNumber) {
-            case 1:
-                setRow1Cards([...row1Cards, card]);
-                break;
-            case 2:
-                setRow2Cards([...row2Cards, card]);
-                break;
-            case 3:
-                setRow3Cards([...row3Cards, card]);
-                break;
-            default:
-                break;
-        }
+    const selectCard = (index: number) => {
+        setCardPlayed(index);
     };
+
+    useEffect(() => {
+        // If a card was played, remove it from the hand and add it to the appropriate row
+        if (cardPlayed != -1) {
+            const card: FC = cardsInHand[cardPlayed];
+            const newHand: FC[] = cardsInHand.slice(0, cardPlayed).concat(cardsInHand.slice(cardPlayed + 1));
+
+            setCardsInHand(newHand);
+
+            //moveCardToRow(card, rowType.MELEE);
+            setCardPlayed(-1);
+            moveCardToRow(card);
+        }
+    });
+
+    const moveCardToRow = (card: FC) => {
+
+        // Add card to the specified row
+        setRow1Cards([...row1Cards, card]);
+    };
+
     return(
         <>
             <Row type={rowType.MELEE} cards={row1Cards}/>
             <Row cards={row2Cards}/>
             <Row cards={row3Cards}/>
-            <PlayerHand cards={cardsInHand} setCardPlayed={setCardPlayed}/>
+            <PlayerHand cards={cardsInHand} selectCard={selectCard}/>
         </>
     )
 }

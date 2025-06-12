@@ -1,17 +1,17 @@
 import type { FC } from "react"
+import React from "react"
 
 interface playerHandProps {
     cards: FC[],
-    setCardPlayed: (card: FC) => void
+    selectCard: (card: FC) => void
 }
 
 export default function PlayerHand(props: playerHandProps) {
-
     return(
         <>
             {props.cards.map((card: FC, index: number) => (
-                <div key={index}>
-                    {card}
+                <div key={index} onClick={() => props.selectCard(index)}>
+                    {React.createElement(card)}
                 </div>
             ))}
         </>
