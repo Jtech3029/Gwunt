@@ -4,8 +4,9 @@ import Card from "./UI_Elements/Card";
 function App() {
   return (
     <>
-      <Card />
-      {/* <Card /> */}
+      <div className="h-full w-full">
+        <Card />
+      </div>
     </>
   );
 }

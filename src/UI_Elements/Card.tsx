@@ -1,5 +1,5 @@
 import philippa from "../assets/philippa.jpg";
-import "./UI_Elements_Styles/card.css";
+// import "./UI_Elements_Styles/card.css";
 
 type CardProps = {
   name: string;
@@ -18,7 +18,7 @@ export default function Card({
 }: CardProps) {
   return (
     <>
-      <div className="bg-emerald-400 w-50 h-75">
+      <div className="w-60 h-100 ">
         <div
           className="w-full h-full bg-cover"
           style={{ backgroundImage: `url(${philippa})` }}
