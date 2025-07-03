@@ -1,14 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Player from "./Player";
 
-export default function Board() {
-    const [userPlayer, setUserPlayer] = useState();
-    const [enemyPlayer, setEnemyPlayer] = useState();
+interface boardProps {
+    playerTurn: boolean
+}
+export default function Board(props: boardProps) {
 
     return(
         <>
-            <Player player={enemyPlayer}/>
-            <Player player={userPlayer}/>
+            <Player player={"Enemy"} playerTurn={props.playerTurn} cards={props.initialEnemyCards} playCard={props.playCard}/>
+            <Player player={"Player"} playerTurn={props.playerTurn} cards={props.initialPlayerCards} playCard={props.playCard}/>
         </>
     )
 }
+
