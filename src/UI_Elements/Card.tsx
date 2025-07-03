@@ -9,13 +9,7 @@ type CardProps = {
   isHero: boolean;
 };
 
-export default function Card({
-  name,
-  image,
-  damage,
-  cardClass,
-  isHero,
-}: CardProps) {
+export default function Card() {
   return (
     <>
       <div className="w-60 h-100 ">
@@ -27,3 +21,22 @@ export default function Card({
     </>
   );
 }
+
+// export default function Card({
+//   name,
+//   image,
+//   damage,
+//   cardClass,
+//   isHero,
+// }: CardProps) {
+//   return (
+//     <>
+//       <div className="w-60 h-100 ">
+//         <div
+//           className="w-full h-full bg-cover"
+//           style={{ backgroundImage: `url(${philippa})` }}
+//         ></div>
+//       </div>
+//     </>
+//   );
+// }
