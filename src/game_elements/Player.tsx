@@ -1,7 +1,7 @@
 import Row from "./Row";
 import { useEffect, useState, type FC } from "react";
 import PlayerHand from "./PlayerHand";
-import { RowUnit, type RowType } from "./RowType";
+import { RowUnit, type RowType } from "./game_types/RowType";
 
 interface PlayerProps {
     playerType: boolean,
@@ -37,7 +37,7 @@ const Player: FC<PlayerProps> = (props: PlayerProps) => {
             setRowSelected(null);
         }
     },[rowSelected, cardPlayed])
-    
+
     return(
         <>
             <Row selectRow={selectRow} rowType={RowUnit.MELEE} cardsInRow={props.cards.rowOneCards}/>

@@ -1,36 +1,24 @@
 import {useState, type FC } from "react"
 import Board from "./Board";
-import { RowUnit, type RowType } from "./RowType";
-import { BoardPlayer, type PlayerType } from "./PlayerType";
+import { RowUnit, type RowType } from "./game_types/RowType";
+import { BoardPlayer, type PlayerType } from "./game_types/PlayerType";
+import PlayerCards from "./PlayerCards";
 
-class playerCards {
-    rowOneCards: FC[];
-    rowTwoCards: FC[];
-    rowThreeCards: FC[];
-    cardsInHand: FC[];
-
-    constructor(rowOneCards: FC[], rowTwoCards: FC[], rowThreeCards: FC[], cardsInHand: FC[]) {
-        this.rowOneCards = rowOneCards;
-        this.rowTwoCards = rowTwoCards;
-        this.rowThreeCards = rowThreeCards
-        this.cardsInHand = cardsInHand;
-    }
-}
 //Game.tsx will hold the game logic until we transport the game to a backend
 //until them, we'll use this component to hold all the game logic and act as the backend
 export default function Game() {
-        const PlayerCards: FC[] = [];
-    const EnemyCards: FC[] = [];
+    const PLAYERCARDS: FC[] = [];
+    const ENEMYCARDS: FC[] = [];
 
     for (let index = 0; index < 11; index++) {
-        EnemyCards.push(() => {
+        ENEMYCARDS.push(() => {
             return (() => {
                 return(
                     <div>Card {1+index}</div>
                 )
             })();
         })
-        PlayerCards.push(() => {
+        PLAYERCARDS.push(() => {
             return (() => {
                 return(
                     <div>Card {1+index}</div>
@@ -43,14 +31,14 @@ export default function Game() {
     const [playerRowTwoCards, setPlayerRowTwoCards] = useState<FC[]>([]);
     const [playerRowThreeCards, setPlayerRowThreeCards] = useState<FC[]>([]);
     const [playerCardsInHand, setPlayerCardsInHand] = useState<FC[]>(PlayerCards);
-    const playerOne = new playerCards(playerRowOneCards, playerRowTwoCards, playerRowThreeCards, playerCardsInHand);
+    const playerOne = new PlayerCards(playerRowOneCards, playerRowTwoCards, playerRowThreeCards, playerCardsInHand);
 
     const [enemyRowOneCards, setEnemyRowOneCards] = useState<FC[]>([]);
     const [enemyRowTwoCards, setEnemyRowTwoCards] = useState<FC[]>([]);
     const [enemyRowThreeCards, setEnemyRowThreeCards] = useState<FC[]>([]);
     const [enemyCardsInHand, setEnemyCardsInHand] = useState<FC[]>(EnemyCards);
 
-    const playerTwo = new playerCards(enemyRowOneCards, enemyRowTwoCards, enemyRowThreeCards, enemyCardsInHand);
+    const playerTwo = new PlayerCards(enemyRowOneCards, enemyRowTwoCards, enemyRowThreeCards, enemyCardsInHand);
 
     const [playerTurn, setPlayerTurn] = useState<PlayerType>(BoardPlayer.PLAYER);
     

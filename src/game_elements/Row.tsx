@@ -1,6 +1,6 @@
 import type { FC } from "react"
 import React from "react"
-import type { RowType } from "./RowType"
+import type { RowType } from "./game_types/RowType"
 
 interface rowProps {
     cardsInRow: FC[],
