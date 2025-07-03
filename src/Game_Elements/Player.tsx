@@ -40,9 +40,9 @@ const Player: FC<PlayerProps> = (props: PlayerProps) => {
     
     return(
         <>
-            <Row selectRow={selectRow} rowType={RowUnit.MELEE} cardsInRow={props.cards.row1Cards}/>
-            <Row selectRow={selectRow} rowType={RowUnit.RANGED} cardsInRow={props.cards.row2Cards}/>
-            <Row selectRow={selectRow} rowType={RowUnit.SUPPORT} cardsInRow={props.cards.row3Cards}/>
+            <Row selectRow={selectRow} rowType={RowUnit.MELEE} cardsInRow={props.cards.rowOneCards}/>
+            <Row selectRow={selectRow} rowType={RowUnit.RANGED} cardsInRow={props.cards.rowTwoCards}/>
+            <Row selectRow={selectRow} rowType={RowUnit.SUPPORT} cardsInRow={props.cards.rowThreeCards}/>
             <PlayerHand cardsInHand={props.cards.cardsInHand} selectCard={selectCard}/>
         </>
     )

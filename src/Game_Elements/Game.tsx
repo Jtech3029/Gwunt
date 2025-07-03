@@ -1,12 +1,18 @@
-import { useEffect, useState, type FC } from "react"
+import {useState, type FC } from "react"
 import Board from "./Board";
-import { RowUnit } from "./RowType";
+import { RowUnit, type RowType } from "./RowType";
+import { BoardPlayer, type PlayerType } from "./PlayerType";
 
 class playerCards {
-    constructor(row1Cards, row2Cards, row3Cards, cardsInHand) {
-        this.row1Cards = row1Cards;
-        this.row2Cards = row2Cards;
-        this.row3Cards = row3Cards
+    rowOneCards: FC[];
+    rowTwoCards: FC[];
+    rowThreeCards: FC[];
+    cardsInHand: FC[];
+
+    constructor(rowOneCards: FC[], rowTwoCards: FC[], rowThreeCards: FC[], cardsInHand: FC[]) {
+        this.rowOneCards = rowOneCards;
+        this.rowTwoCards = rowTwoCards;
+        this.rowThreeCards = rowThreeCards
         this.cardsInHand = cardsInHand;
     }
 }
@@ -33,52 +39,52 @@ export default function Game() {
         })
     }
 
-    const [player1Row1Cards, setPlayer1Row1Cards] = useState<FC[]>([]);
-    const [player1row2Cards, setPlayer1Row2Cards] = useState<FC[]>([]);
-    const [player1row3Cards, setPlayer1Row3Cards] = useState<FC[]>([]);
-    const [player1CardsInHand, setPlayer1CardsInHand] = useState<FC[]>(PlayerCards);
-    const playerOne = new playerCards(player1Row1Cards, player1row2Cards, player1row3Cards, player1CardsInHand)
+    const [playerRowOneCards, setPlayerRowOneCards] = useState<FC[]>([]);
+    const [playerRowTwoCards, setPlayerRowTwoCards] = useState<FC[]>([]);
+    const [playerRowThreeCards, setPlayerRowThreeCards] = useState<FC[]>([]);
+    const [playerCardsInHand, setPlayerCardsInHand] = useState<FC[]>(PlayerCards);
+    const playerOne = new playerCards(playerRowOneCards, playerRowTwoCards, playerRowThreeCards, playerCardsInHand);
 
-    const [player2Row1Cards, setPlayer2Row1Cards] = useState<FC[]>([]);
-    const [player2row2Cards, setPlayer2Row2Cards] = useState<FC[]>([]);
-    const [player2row3Cards, setPlayer2Row3Cards] = useState<FC[]>([]);
-    const [player2CardsInHand, setPlayer2CardsInHand] = useState<FC[]>(EnemyCards);
+    const [enemyRowOneCards, setEnemyRowOneCards] = useState<FC[]>([]);
+    const [enemyRowTwoCards, setEnemyRowTwoCards] = useState<FC[]>([]);
+    const [enemyRowThreeCards, setEnemyRowThreeCards] = useState<FC[]>([]);
+    const [enemyCardsInHand, setEnemyCardsInHand] = useState<FC[]>(EnemyCards);
 
-    const playerTwo = new playerCards(player2Row1Cards, player2row2Cards, player2row3Cards, player2CardsInHand)
+    const playerTwo = new playerCards(enemyRowOneCards, enemyRowTwoCards, enemyRowThreeCards, enemyCardsInHand);
 
-    const [playerTurn, setPlayerTurn] = useState<string>("Player");
+    const [playerTurn, setPlayerTurn] = useState<PlayerType>(BoardPlayer.PLAYER);
     
     /**
      * Move the played card to the appropriate row based on the card chosen.
      */
-    function playCard(cardPlayed, rowSelected, player) {
-        if(player === "Player") {
-            const card: FC = player1CardsInHand[cardPlayed];
-            const newHand: FC[] = player1CardsInHand.slice(0, cardPlayed).concat(player1CardsInHand.slice(cardPlayed + 1));
-            setPlayer1CardsInHand(newHand);
+    function playCard(cardPlayed: number, rowSelected: RowType, player: PlayerType) {
+        if(player === BoardPlayer.PLAYER) {
+            const card: FC = playerCardsInHand[cardPlayed];
+            const newHand: FC[] = playerCardsInHand.slice(0, cardPlayed).concat(playerCardsInHand.slice(cardPlayed + 1));
+            setPlayerCardsInHand(newHand);
 
             if (rowSelected === RowUnit.MELEE) {
-                    setPlayer1Row1Cards([...player1Row1Cards, card]);
+                    setPlayerRowOneCards([...playerRowOneCards, card]);
                 } else if (rowSelected === RowUnit.RANGED) {
-                    setPlayer1Row2Cards([...player1row2Cards, card]);
+                    setPlayerRowTwoCards([...playerRowTwoCards, card]);
                 } else if (rowSelected === RowUnit.SUPPORT) {
-                    setPlayer1Row3Cards([...player1row3Cards, card]);
+                    setPlayerRowThreeCards([...playerRowThreeCards, card]);
                 }
-            setPlayerTurn("Enemy");
+            setPlayerTurn(BoardPlayer.ENEMY);
         }
-        if(player === "Enemy") {
-            const card: FC = player2CardsInHand[cardPlayed];
-            const newHand: FC[] = player2CardsInHand.slice(0, cardPlayed).concat(player2CardsInHand.slice(cardPlayed + 1));
-            setPlayer2CardsInHand(newHand);
+        if(player === BoardPlayer.ENEMY) {
+            const card: FC = enemyCardsInHand[cardPlayed];
+            const newHand: FC[] = enemyCardsInHand.slice(0, cardPlayed).concat(enemyCardsInHand.slice(cardPlayed + 1));
+            setEnemyCardsInHand(newHand);
 
             if (rowSelected === RowUnit.MELEE) {
-                    setPlayer2Row1Cards([...player2Row1Cards, card]);
+                    setEnemyRowOneCards([...enemyRowOneCards, card]);
                 } else if (rowSelected === RowUnit.RANGED) {
-                    setPlayer2Row2Cards([...player2row2Cards, card]);
+                    setEnemyRowTwoCards([...enemyRowTwoCards, card]);
                 } else if (rowSelected === RowUnit.SUPPORT) {
-                    setPlayer2Row3Cards([...player2row3Cards, card]);
+                    setEnemyRowThreeCards([...enemyRowThreeCards, card]);
                 }
-            setPlayerTurn("Player");
+            setPlayerTurn(BoardPlayer.PLAYER);
         }
     }
     
