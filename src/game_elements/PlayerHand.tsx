@@ -1,17 +1,16 @@
-import type { FC } from "react"
-import React from "react"
+import type { JSX } from "react"
 
 interface playerHandProps {
-    cardsInHand: FC[],
+    cardsInHand: JSX.Element[],
     selectCard: (index: number) => void
 }
 
 export default function PlayerHand(props: playerHandProps) {
     return(
         <>
-            {props.cardsInHand.map((card: FC, index: number) => (
+            {props.cardsInHand.map((card, index: number) => (
                 <div key={index} onClick={() => props.selectCard(index)}>
-                    {React.createElement(card)}
+                    {card}
                 </div>
             ))}
         </>

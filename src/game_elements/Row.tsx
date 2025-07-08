@@ -1,9 +1,8 @@
-import type { FC } from "react"
-import React from "react"
+import type { JSX } from "react"
 import type { RowType } from "./game_types/RowType"
 
 interface rowProps {
-    cardsInRow: FC[],
+    cardsInRow: JSX.Element[],
     selectRow: (rowType: RowType) => void
     rowType: RowType
 }
@@ -15,9 +14,9 @@ export default function Row(props: rowProps) {
     //remove these lines after implementing the logic for row selection
     return(
         <div className="h-28 w-28 border border-indigo-600" onClick={() => props.selectRow(props.rowType)}>
-            {props.cardsInRow.map((card: FC, index: number) => (
+            {props.cardsInRow.map((card: JSX.Element, index: number) => (
                 <div key={index}>
-                    {React.createElement(card)}
+                    {card}
                 </div>
             ))}
         </div>
