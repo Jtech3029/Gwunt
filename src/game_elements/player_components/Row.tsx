@@ -1,5 +1,5 @@
 import type { JSX } from "react"
-import type { RowType } from "./game_types/RowType"
+import type { RowType } from "../game_types/RowType"
 
 interface rowProps {
     cardsInRow: JSX.Element[],

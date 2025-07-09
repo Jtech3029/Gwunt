@@ -1,20 +1,18 @@
 import Row from "./Row";
 import { useEffect, useState, type FC } from "react";
 import PlayerHand from "./PlayerHand";
-import { RowUnit, type RowType } from "./game_types/RowType";
+import { RowUnit, type RowType } from "../game_types/RowType";
+import type PlayerCards from "./PlayerCards";
+import type { PlayerType } from "../game_types/PlayerType";
 
 interface PlayerProps {
-    playerType: boolean,
-    remainingCards: (Cards) => void,
-    initialCards: FC[],
-    firstRowCards: FC[],
-    secondRowCards: FC[],
-    thirdRowCards: FC[],
-    isTurn: boolean
+    cards: PlayerCards,
+    player: PlayerType,
+    playerTurn: PlayerType,
+    playCard: (cardPlayed: number, rowSelected: RowType, player: PlayerType) => void
 }
 
 const Player: FC<PlayerProps> = (props: PlayerProps) => {
-    const [cardsInHand, setCardsInHand] = useState<FC[]>(props.initialCards);
     const [cardPlayed, setCardPlayed] = useState<number>(-1);
     const [rowSelected, setRowSelected] = useState<RowType | null>(null);
 

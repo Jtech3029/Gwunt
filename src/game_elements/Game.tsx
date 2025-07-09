@@ -2,7 +2,7 @@ import {useState, type JSX } from "react"
 import Board from "./Board";
 import { RowUnit, type RowType } from "./game_types/RowType";
 import { BoardPlayer, type PlayerType } from "./game_types/PlayerType";
-import PlayerCards from "./PlayerCards";
+import PlayerCards from "./player_components/PlayerCards";
 import createCardDeck from "./CreateCardDeck";
 import northernRealms from "./northernRealms";
 
@@ -30,7 +30,7 @@ export default function Game() {
     /**
      * Move the played card to the appropriate row based on the card chosen.
      */
-    function playCard(cardPlayed: number, rowSelected: RowType, player: PlayerType) {
+    function PlayCard(cardPlayed: number, rowSelected: RowType, player: PlayerType) {
         if(player === BoardPlayer.PLAYER) {
             const card: JSX.Element = playerCardsInHand[cardPlayed];
             const newHand: JSX.Element[] = playerCardsInHand.slice(0, cardPlayed).concat(playerCardsInHand.slice(cardPlayed + 1));
@@ -63,11 +63,8 @@ export default function Game() {
     
     return(
         <>
-            <Board playerTurn={playerTurn} initialPlayerCards={playerOne} initialEnemyCards={playerTwo} playCard={playCard}/>
+            <Board playerTurn={playerTurn} PlayerCards={playerOne} EnemyCards={playerTwo} PlayCard={PlayCard}/>
         </>
     )
 }
 
-function assignCards() {
-    // Assign cards to players
-}

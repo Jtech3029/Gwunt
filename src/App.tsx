@@ -1,6 +1,5 @@
 import "./App.css";
-import Card from "./UI_Elements/Card";
-import Game from "./Game_Elements/Game";
+import Game from "./game_elements/Game";
 
 function App() {
   return (
@@ -8,7 +7,6 @@ function App() {
       <Game />
 
       <div className="h-full w-full">
-        <Card />
       </div>
     </>
   );
