@@ -1,31 +1,49 @@
 import Row from "./Row";
-import { useEffect, useState, type JSX } from "react";
+import { useEffect } from "react";
 import PlayerHand from "./PlayerHand";
-import { RowUnit, type RowType } from "../game_types/RowType";
+import { CardClass } from "../game_types/RowType";
+import type PlayerCards from "./PlayerCards";
+import type { PlayerType } from "../game_types/PlayerType";
 
-interface PlayerProps {
-    playerType: boolean,
-    remainingCards: (Cards) => void,
-    initialCards: JSX.Element[],
-    firstRowCards: JSX.Element[],
-    secondRowCards: JSX.Element[],
-    thirdRowCards: JSX.Element[],
-    isTurn: boolean
+interface EnemyProps {
+    cards: PlayerCards,
+    player: PlayerType,
+    playerTurn: PlayerType,
+    playCard: (cardPlayed: number, player: PlayerType) => void,
+    difficulty: number
 }
 
 
-function Enemy (props: PlayerProps) {
-    const [cardsInHand, setCardsInHand] = useState<JSX.Element[]>(props.initialCards);    
+function Enemy (props: EnemyProps) {
+    function selectRow() {};
+    function selectCard() {};
 
     useEffect(() => {
-        
-        EnemyAi()
-    },[playerTurn])
+        if(props.playerTurn === props.player){
+            playAIMove();
+        }
+    },[props.playerTurn])
+
+    function playAIMove() {
+        switch (props.difficulty) {
+            case 1:
+                props.playCard(Math.floor(Math.random() * props.cards.cardsInHand.length), props.player);
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            default:
+                break;
+        }
+    }
     return(
         <>
-            <Row selectRow={selectRow} rowType={RowUnit.SUPPORT} cardsInRow={props.cards.rowThreeCards}/>
-            <Row selectRow={selectRow} rowType={RowUnit.RANGED} cardsInRow={props.cards.rowTwoCards}/>
-            <Row selectRow={selectRow} rowType={RowUnit.MELEE} cardsInRow={props.cards.rowOneCards}/>
+            <Row chooseRow={selectRow} rowType={CardClass.SUPPORT} cardsInRow={props.cards.rowThreeCards}/>
+            <Row chooseRow={selectRow} rowType={CardClass.RANGED} cardsInRow={props.cards.rowTwoCards}/>
+            <Row chooseRow={selectRow} rowType={CardClass.MELEE} cardsInRow={props.cards.rowOneCards}/>
             <PlayerHand cardsInHand={props.cards.cardsInHand} selectCard={selectCard}/>
         </>
     )

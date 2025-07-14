@@ -1,10 +1,10 @@
-const RowUnit = {
+const CardClass = {
     MELEE: "MELEE",
     RANGED: "RANGED",
     SUPPORT: "SUPPORT",
 } as const;
 
-type RowType = typeof RowUnit[keyof typeof RowUnit];
+type CardType = typeof CardClass[keyof typeof CardClass];
 
-export type { RowType } ;
-export { RowUnit };
+export type { CardType } ;
+export { CardClass };

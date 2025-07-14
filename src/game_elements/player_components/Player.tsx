@@ -1,7 +1,7 @@
 import Row from "./Row";
 import { useEffect, useState, type FC } from "react";
 import PlayerHand from "./PlayerHand";
-import { RowUnit, type RowType } from "../game_types/RowType";
+import { CardClass, type CardType } from "../game_types/RowType";
 import type PlayerCards from "./PlayerCards";
 import type { PlayerType } from "../game_types/PlayerType";
 
@@ -9,12 +9,12 @@ interface PlayerProps {
     cards: PlayerCards,
     player: PlayerType,
     playerTurn: PlayerType,
-    playCard: (cardPlayed: number, rowSelected: RowType, player: PlayerType) => void
+    playCard: (cardPlayed: number, player: PlayerType) => void
 }
 
 const Player: FC<PlayerProps> = (props: PlayerProps) => {
     const [cardPlayed, setCardPlayed] = useState<number>(-1);
-    const [rowSelected, setRowSelected] = useState<RowType | null>(null);
+    const [confirmMove, setConfirmMove] = useState<boolean | null>(null);
 
     const selectCard = (index: number) => {
         if(props.playerTurn === props.player) {
@@ -22,25 +22,25 @@ const Player: FC<PlayerProps> = (props: PlayerProps) => {
         }
     };
 
-    const selectRow = (rowType: RowType) => {
-        if(props.playerTurn === props.player && cardPlayed != -1) {
-            setRowSelected(rowType);
+    const confirmSelect = (rowChosen: CardType) => {
+        if(props.playerTurn === props.player && cardPlayed != -1 && rowChosen === props.cards.cardsInHand[cardPlayed].props.cardClass) {
+            setConfirmMove(true);
         }
     };
 
     useEffect(() => {
-        if(cardPlayed != -1 && rowSelected != null) {
-            props.playCard(cardPlayed, rowSelected, props.player);
+        if(cardPlayed != -1 && confirmMove != null) {
+            props.playCard(cardPlayed, props.player);
             setCardPlayed(-1);
-            setRowSelected(null);
+            setConfirmMove(null);
         }
-    },[rowSelected, cardPlayed])
+    },[confirmMove, cardPlayed])
 
     return(
         <>
-            <Row selectRow={selectRow} rowType={RowUnit.MELEE} cardsInRow={props.cards.rowOneCards}/>
-            <Row selectRow={selectRow} rowType={RowUnit.RANGED} cardsInRow={props.cards.rowTwoCards}/>
-            <Row selectRow={selectRow} rowType={RowUnit.SUPPORT} cardsInRow={props.cards.rowThreeCards}/>
+            <Row chooseRow={confirmSelect} rowType={CardClass.MELEE} cardsInRow={props.cards.rowOneCards}/>
+            <Row chooseRow={confirmSelect} rowType={CardClass.RANGED} cardsInRow={props.cards.rowTwoCards}/>
+            <Row chooseRow={confirmSelect} rowType={CardClass.SUPPORT} cardsInRow={props.cards.rowThreeCards}/>
             <PlayerHand cardsInHand={props.cards.cardsInHand} selectCard={selectCard}/>
         </>
     )

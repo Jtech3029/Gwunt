@@ -1,6 +1,6 @@
 import {useState, type JSX } from "react"
 import Board from "./Board";
-import { RowUnit, type RowType } from "./game_types/RowType";
+import { CardClass } from "./game_types/RowType";
 import { BoardPlayer, type PlayerType } from "./game_types/PlayerType";
 import PlayerCards from "./player_components/PlayerCards";
 import createCardDeck from "./CreateCardDeck";
@@ -30,17 +30,17 @@ export default function Game() {
     /**
      * Move the played card to the appropriate row based on the card chosen.
      */
-    function PlayCard(cardPlayed: number, rowSelected: RowType, player: PlayerType) {
+    function PlayCard(cardPlayed: number, player: PlayerType) {
         if(player === BoardPlayer.PLAYER) {
             const card: JSX.Element = playerCardsInHand[cardPlayed];
             const newHand: JSX.Element[] = playerCardsInHand.slice(0, cardPlayed).concat(playerCardsInHand.slice(cardPlayed + 1));
             setPlayerCardsInHand(newHand);
 
-            if (rowSelected === RowUnit.MELEE) {
+            if (card.props.cardClass === CardClass.MELEE) {
                     setPlayerRowOneCards([...playerRowOneCards, card]);
-                } else if (rowSelected === RowUnit.RANGED) {
+                } else if (card.props.cardClass === CardClass.RANGED) {
                     setPlayerRowTwoCards([...playerRowTwoCards, card]);
-                } else if (rowSelected === RowUnit.SUPPORT) {
+                } else if (card.props.cardClass === CardClass.SUPPORT) {
                     setPlayerRowThreeCards([...playerRowThreeCards, card]);
                 }
             setPlayerTurn(BoardPlayer.ENEMY);
@@ -50,11 +50,11 @@ export default function Game() {
             const newHand: JSX.Element[] = enemyCardsInHand.slice(0, cardPlayed).concat(enemyCardsInHand.slice(cardPlayed + 1));
             setEnemyCardsInHand(newHand);
 
-            if (rowSelected === RowUnit.MELEE) {
+            if (card.props.cardClass === CardClass.MELEE) {
                     setEnemyRowOneCards([...enemyRowOneCards, card]);
-                } else if (rowSelected === RowUnit.RANGED) {
+                } else if (card.props.cardClass === CardClass.RANGED) {
                     setEnemyRowTwoCards([...enemyRowTwoCards, card]);
-                } else if (rowSelected === RowUnit.SUPPORT) {
+                } else if (card.props.cardClass === CardClass.SUPPORT) {
                     setEnemyRowThreeCards([...enemyRowThreeCards, card]);
                 }
             setPlayerTurn(BoardPlayer.PLAYER);
