@@ -1,4 +1,4 @@
-import philippa from "../assets/philippa.jpg";
+import phil from "../assets/phil.jpg";
 // import "./UI_Elements_Styles/card.css";
 
 type cardData = {
@@ -12,7 +12,7 @@ type cardData = {
 const northernRealms: cardData[] = [
   {
     name: "Philippa",
-    image: philippa,
+    image: phil,
     damage: 50,
     cardClass: "hero",
     isHero: true,
