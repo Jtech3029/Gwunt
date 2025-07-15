@@ -1,5 +1,5 @@
-import phil from "../assets/phil.jpg";
 // import "./UI_Elements_Styles/card.css";
+import phil from "../assets/phil.jpg?url";
 
 type cardData = {
     name: string,

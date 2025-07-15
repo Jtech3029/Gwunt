@@ -1,0 +1,16 @@
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: 0.375rem; /* matches rounded-md (6px) */
+  box-shadow: 0 0 40px 15px white;
+  opacity: 1;
+  transition: opacity 1.5s ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card:hover::after {
+  opacity: 1;
+}

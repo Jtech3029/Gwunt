@@ -1,11 +1,22 @@
 import { motion, useAnimate } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface CardProps {
   img: string;
   center?: number;
   glimmer: string;
   shadow: string;
+  transitionConfig: {
+    boxShadow: {
+      duration: number;
+      repeat: number;
+      repeatType: "reverse";
+    };
+  };
+  hoverConfig: {
+    boxShadow: string;
+    y: number;
+  };
 }
 
 export default function UpdatedCard({
@@ -13,6 +24,8 @@ export default function UpdatedCard({
   center = 50,
   glimmer,
   shadow,
+  transitionConfig,
+  hoverConfig,
 }: CardProps) {
   const [showGlimmer, setShowGlimmer] = useState<boolean>(false);
 
@@ -28,7 +41,7 @@ export default function UpdatedCard({
             offsetDistance: "100%",
           },
           {
-            duration: 7,
+            duration: 10,
             repeat: Infinity,
             ease: "linear",
           },
@@ -40,7 +53,7 @@ export default function UpdatedCard({
             offsetDistance: "150%",
           },
           {
-            duration: 7,
+            duration: 10,
             repeat: Infinity,
             ease: "linear",
           },
@@ -76,18 +89,14 @@ export default function UpdatedCard({
     <>
       <motion.div
         className="w-60 h-100 bg-cover relative overflow-hidden rounded-xl "
-        onHoverStart={(event) => {
+        onHoverStart={() => {
           setShowGlimmer(true);
         }}
-        onHoverEnd={(event) => {
+        onHoverEnd={() => {
           setShowGlimmer(false);
         }}
-        whileHover={{
-          boxShadow: `0 0 80px 30px ${shadow}`,
-        }}
-        transition={{
-          boxShadow: { duration: 2, repeat: Infinity, repeatType: "reverse" },
-        }}
+        whileHover={hoverConfig}
+        transition={transitionConfig}
         style={{
           backgroundImage: `url(${img})`,
           backgroundPosition: `${center}%`,
