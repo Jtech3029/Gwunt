@@ -1,5 +1,5 @@
 import { motion, useAnimate } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface CardProps {
   img: string;
