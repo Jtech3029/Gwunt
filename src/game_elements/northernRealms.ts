@@ -1,4 +1,3 @@
-import philippa from "../assets/philippa.jpg";
 import ballista_v1 from "../assets/northern-realms/ballista_v1.png";
 import { CardClass, type CardType } from "./game_types/RowType";
 // import "./UI_Elements_Styles/card.css";
@@ -16,34 +15,6 @@ const northernRealms: cardData[] = [
   {
     name: "Philippa",
     image: phil,
-    damage: 0,
-    cardClass: CardClass.RANGED,
-    isHero: true,
-  },
-  {
-    name: "Ballista",
-    image: ballista_v1,
-    damage: 50,
-    cardClass: CardClass.SUPPORT,
-    isHero: true,
-  },
-    {
-    name: "Philippa",
-    image: philippa,
-    damage: 0,
-    cardClass: CardClass.RANGED,
-    isHero: true,
-  },
-  {
-    name: "Ballista",
-    image: ballista_v1,
-    damage: 50,
-    cardClass: CardClass.SUPPORT,
-    isHero: true,
-  },
-    {
-    name: "Philippa",
-    image: philippa,
     damage: 0,
     cardClass: CardClass.RANGED,
     isHero: true,
