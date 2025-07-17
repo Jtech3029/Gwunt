@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Game from "./game_elements/Game";
 import UpdatedCard from "./UI_Elements/Updated_Card";
+import Home from "./Homepage";
 
 import triss from "./assets/triss_enhanced.jpg?url";
 import phil from "./assets/phil.jpg?url";
@@ -37,12 +38,13 @@ function App() {
     }),
     [],
   );
-
+  
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Game />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/game" element={<Game />} />
           <Route
             path="/cards"
             element={

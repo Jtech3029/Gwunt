@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
 @import "tailwindcss";
 
 #root,html,body {
@@ -5,4 +6,8 @@
     padding: 0;
     height: 100%;
     width: 100%;
+}
+
+@theme {
+  --font-cinzel: 'Cinzel', 'sans-serif';
 }

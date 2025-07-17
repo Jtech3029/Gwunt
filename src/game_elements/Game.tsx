@@ -22,7 +22,6 @@ export default function Game() {
     const [enemyRowTwoCards, setEnemyRowTwoCards] = useState<JSX.Element[]>([]);
     const [enemyRowThreeCards, setEnemyRowThreeCards] = useState<JSX.Element[]>([]);
     const [enemyCardsInHand, setEnemyCardsInHand] = useState<JSX.Element[]>(ENEMYCARDS);
-
     const playerTwo = new PlayerCards(enemyRowOneCards, enemyRowTwoCards, enemyRowThreeCards, enemyCardsInHand);
 
     const [playerTurn, setPlayerTurn] = useState<PlayerType>(BoardPlayer.PLAYER);
