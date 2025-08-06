@@ -16,10 +16,13 @@ function Enemy(props: EnemyProps) {
   function selectRow() {}
 
   useEffect(() => {
-    if (props.playerTurn === props.player) {
+    if (props.playerTurn === props.player && props.cards.cardsInHand.length != 0) {
       playAIMove();
     }
-  }, [props.playerTurn]);
+    else if(props.cards.cardsInHand.length == 0) {
+      props.passTurn();
+    }
+  });
 
   function playAIMove() {
     switch (props.difficulty) {

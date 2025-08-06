@@ -42,7 +42,7 @@ const Player: FC<PlayerProps> = (props: PlayerProps) => {
 
   return (
     <>
-      <div className="grid grid-rows-3 grid-cols-1 gap-3 mt-3 mb-3">
+      <div>
         <Row
           chooseRow={confirmSelect}
           rowType={CardClass.MELEE}
