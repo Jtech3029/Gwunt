@@ -15,7 +15,7 @@ const northernRealms: cardData[] = [
   {
     name: "Philippa",
     image: phil,
-    damage: 0,
+    damage: 2,
     cardClass: CardClass.RANGED,
     isHero: true,
   },

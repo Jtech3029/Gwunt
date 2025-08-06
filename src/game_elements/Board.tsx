@@ -22,6 +22,7 @@ export default function Board(props: boardProps) {
             cards={props.EnemyCards}
             playCard={props.PlayCard}
             difficulty={1}
+            passTurn={props.passTurn}
           />
         </div>
         <hr></hr>
@@ -31,6 +32,7 @@ export default function Board(props: boardProps) {
             playerTurn={props.playerTurn}
             cards={props.PlayerCards}
             playCard={props.PlayCard}
+            passTurn={props.passTurn}
           />
         </div>
       </div>
