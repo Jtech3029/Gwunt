@@ -11,7 +11,7 @@ interface boardProps {
 }
 export default function Board(props: boardProps) {
   return (
-    <div className="max-h-dvh max-w-dvw flex">
+    <div className="max-h-dvh max-w-dvw flex bg-gradient-to-br from-stone-900 via-amber-950 to-stone-800">
       <div className="w-20/100 h-screen bg-black"></div>
       <div className="h-dvh w-65/100">
         <div>
