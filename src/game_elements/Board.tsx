@@ -33,7 +33,16 @@ export default function Board(props: boardProps) {
           />
         </div>
       </div>
-      <div className="w-15/100 h-screen bg-black"></div>
+      <div className="w-15/100 h-screen flex flex-col justify-between">
+        <div className="flex">
+          <div className="w-15 h-25 opacity-50 border-2 border-amber-700/60">discard</div>
+          <div className="w-15 h-25 opacity-50 border-2 border-amber-700/60">deck</div>
+        </div>
+        <div className="flex">
+          <div className="w-15 h-25 opacity-50 border-2 border-amber-700/60">discard</div>
+          <div className="w-15 h-25 opacity-50 border-2 border-amber-700/60">deck</div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -23,7 +23,7 @@ export default function Row(props: rowProps) {
 
   return (
     <div
-      className="h-[11.5dvh] flex justify-evenly opacity-50 border-2 border-amber-700/60"
+      className="h-[11.5dvh] flex justify-evenly opacity-50 border-2 border-amber-700/60 text-amber-400 mb-2"
       onClick={() => props.chooseRow(props.rowType)}
     >
       {props.rowType}
