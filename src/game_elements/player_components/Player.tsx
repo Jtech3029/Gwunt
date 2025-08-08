@@ -42,7 +42,7 @@ const Player: FC<PlayerProps> = (props: PlayerProps) => {
 
   return (
     <>
-      <div className="grid grid-rows-4 grid-cols-1">
+      <div className="grid grid-rows-3 grid-cols-1 gap-3 mt-3 mb-3">
         <Row
           chooseRow={confirmSelect}
           rowType={CardClass.MELEE}
@@ -58,14 +58,13 @@ const Player: FC<PlayerProps> = (props: PlayerProps) => {
           rowType={CardClass.SUPPORT}
           cardsInRow={props.cards.rowThreeCards}
         />
-        <PlayerHand
-          cardsInHand={props.cards.cardsInHand}
-          selectCard={selectCard}
-        />
       </div>
+      <PlayerHand
+        cardsInHand={props.cards.cardsInHand}
+        selectCard={selectCard}
+      />
     </>
   );
 };
 
 export default Player;
-

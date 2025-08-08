@@ -11,8 +11,9 @@ interface boardProps {
 }
 export default function Board(props: boardProps) {
   return (
-    <>
-      <div className="h-screen w-screen grid grid-rows-2 gap-410">
+    <div className="max-h-dvh max-w-dvw flex">
+      <div className="w-20/100 h-screen bg-black"></div>
+      <div className="h-dvh w-65/100">
         <div>
           <Enemy
             player={BoardPlayer.ENEMY}
@@ -22,7 +23,7 @@ export default function Board(props: boardProps) {
             difficulty={1}
           />
         </div>
-
+        <hr></hr>
         <div>
           <Player
             player={BoardPlayer.PLAYER}
@@ -32,6 +33,7 @@ export default function Board(props: boardProps) {
           />
         </div>
       </div>
-    </>
+      <div className="w-15/100 h-screen bg-black"></div>
+    </div>
   );
 }

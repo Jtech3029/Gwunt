@@ -22,9 +22,14 @@ export default function Row(props: rowProps) {
   //
 
   return (
-    <div className="h-full w-full flex justify-evenly bg-amber-50 border-2 border-solid">
+    <div
+      className="h-[11.5dvh] bg-gradient-to-r from-amber-900 via-amber-700 to-amber-800 flex justify-evenly bg-amber-50 border-2 border-solid"
+      onClick={() => props.chooseRow(props.rowType)}
+    >
       {props.rowType}
+      {props.cardsInRow.map((card: JSX.Element, index: number) => (
+        <div key={index}>{card}</div>
+      ))}
     </div>
   );
 }
-

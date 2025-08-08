@@ -1,6 +1,5 @@
 import Row from "./Row";
 import { useEffect } from "react";
-import PlayerHand from "./PlayerHand";
 import { CardClass } from "../game_types/RowType";
 import type PlayerCards from "./PlayerCards";
 import type { PlayerType } from "../game_types/PlayerType";
@@ -15,7 +14,6 @@ interface EnemyProps {
 
 function Enemy(props: EnemyProps) {
   function selectRow() {}
-  function selectCard() {}
 
   useEffect(() => {
     if (props.playerTurn === props.player) {
@@ -28,7 +26,7 @@ function Enemy(props: EnemyProps) {
       case 1:
         props.playCard(
           Math.floor(Math.random() * props.cards.cardsInHand.length),
-          props.player,
+          props.player
         );
         break;
       case 2:
@@ -41,11 +39,7 @@ function Enemy(props: EnemyProps) {
   }
   return (
     <>
-      <div className="grid grid-rows-4 grid-cols-1">
-        <PlayerHand
-          cardsInHand={props.cards.cardsInHand}
-          selectCard={selectCard}
-        />
+      <div className="grid grid-rows-3 grid-cols-1 gap-3 mt-3 mb-3">
         <Row
           chooseRow={selectRow}
           rowType={CardClass.SUPPORT}
@@ -67,4 +61,3 @@ function Enemy(props: EnemyProps) {
 }
 
 export default Enemy;
-
