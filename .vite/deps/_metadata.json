@@ -1,31 +1,46 @@
 {
-  "hash": "91a79b67",
-  "configHash": "700729c4",
-  "lockfileHash": "abd91d3d",
-  "browserHash": "dbf906d2",
+  "hash": "cc615ac3",
+  "configHash": "4c322213",
+  "lockfileHash": "3b83ab5b",
+  "browserHash": "94ed57cb",
   "optimized": {
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/.pnpm/react@19.1.0/node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "01f9a73e",
+      "fileHash": "f6f8bd5a",
       "needsInterop": true
     },
     "react": {
       "src": "../../node_modules/.pnpm/react@19.1.0/node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "2bfa7f5e",
+      "fileHash": "b56a86da",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/.pnpm/react-dom@19.1.0_react@19.1.0/node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "40cba08e",
+      "fileHash": "566fb9b3",
       "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/.pnpm/react-router-dom@7.6.3_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "8d0fa5b6",
+      "needsInterop": false
+    },
+    "framer-motion": {
+      "src": "../../node_modules/.pnpm/framer-motion@12.23.12_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/framer-motion/dist/es/index.mjs",
+      "file": "framer-motion.js",
+      "fileHash": "dcee57ae",
+      "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-UQKM4Z2Q": {
-      "file": "chunk-UQKM4Z2Q.js"
+    "chunk-LT5UH4OH": {
+      "file": "chunk-LT5UH4OH.js"
+    },
+    "chunk-FH5DMP6O": {
+      "file": "chunk-FH5DMP6O.js"
     }
   }
 }
