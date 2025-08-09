@@ -17,7 +17,7 @@ export default function Card({
 }: CardProps) {
   return (
     <>
-      <div className="w-15 h-25 opacity-75">
+      <div className="aspect-7/10 h-[11dvh] opacity-75">
         <div
           className="w-full h-full bg-cover"
           style={{ backgroundImage: `url(${image})` }}

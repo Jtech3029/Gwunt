@@ -24,7 +24,7 @@ export default function Board(props: boardProps) {
             difficulty={1}
           />
         </div>
-        <hr></hr>
+        <hr className="text-amber-800/60 border-2"></hr>
         <div>
           <Player
             player={BoardPlayer.PLAYER}
@@ -36,18 +36,18 @@ export default function Board(props: boardProps) {
       </div>
       <div className="w-15/100 h-screen flex flex-col justify-between p-5">
         <div className="flex justify-between">
-          <div className="w-15 h-25 opacity-50 border-2 border-amber-700/60">
+          <div className="aspect-7/10 h-[12dvh] opacity-50 border-2 border-amber-700/60">
             discard
           </div>
-          <div className="w-15 h-25 opacity-50 border-2 border-amber-700/60">
+          <div className="aspect-7/10 h-[12dvh] opacity-50 border-2 border-amber-700/60">
             deck
           </div>
         </div>
         <div className="flex justify-between">
-          <div className="w-15 h-25 opacity-50 border-2 border-amber-700/60">
+          <div className="aspect-7/10 h-[12dvh] opacity-50 border-2 border-amber-700/60">
             discard
           </div>
-          <div className="w-15 h-25 opacity-50 border-2 border-amber-700/60">
+          <div className="aspect-7/10 h-[12dvh] opacity-50 border-2 border-amber-700/60">
             deck
           </div>
         </div>
