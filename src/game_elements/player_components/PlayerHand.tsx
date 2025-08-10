@@ -7,12 +7,12 @@ interface PlayerHandProps {
 }
 
 export default function PlayerHand(props: PlayerHandProps) {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [chosenIndex, setChosenIndex] = useState<number | null>(null);
   const [cardPositions, setCardPositions] = useState<DOMRect[]>([]);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   
   const hoverPosition = props.hoverPosition || { 
-    x: window.innerWidth - 50, 
+    x: window.innerWidth - 150, 
     y: window.innerHeight / 2 
   };
 
@@ -25,17 +25,17 @@ export default function PlayerHand(props: PlayerHandProps) {
   }, [props.cardsInHand]);
 
   const getTransformForCard = (index: number) => {
-    if (hoveredIndex !== index || !cardPositions[index]) return '';
+    if (chosenIndex !== index || !cardPositions[index]) return '';
     
     const cardRect = cardPositions[index];
     const deltaX = hoverPosition.x - (cardRect.left + cardRect.width / 2);
     const deltaY = hoverPosition.y - (cardRect.top + cardRect.height / 2);
     
-    return `translate(${deltaX}px, ${deltaY}px) scale(1.1)`;
+    return `translate(${deltaX}px, ${deltaY}px) scale(3)`;
   };
 
   const chooseCard = (index: number) => {
-    setHoveredIndex(index);
+    setChosenIndex(index);
     props.selectCard(index);
   }
   return (
@@ -46,8 +46,8 @@ export default function PlayerHand(props: PlayerHandProps) {
           ref={(el) => cardRefs.current[index] = el}
           onClick={() => chooseCard(index)}
           className={`
-            transition-all duration-300 ease-in-out transform-gpu
-            ${hoveredIndex === index ? 'z-50 relative' : 'z-auto'}
+            transition-all duration-1000 ease-in-out
+            ${chosenIndex === index ? 'z-50 relative' : 'z-auto'}
           `}
           style={{
             transform: getTransformForCard(index),
