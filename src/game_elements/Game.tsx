@@ -5,45 +5,50 @@ import { BoardPlayer, type PlayerType } from "./game_types/PlayerType";
 import PlayerCards from "./player_components/PlayerCards";
 import createCardDeck from "./CreateCardDeck";
 import northernRealms from "./northernRealms";
+import CompleteCard from "../UI_Elements/CompleteCard";
 
 //Game.tsx will hold the game logic until we transport the game to a backend
 //until them, we'll use this component to hold all the game logic and act as the backend
 export default function Game() {
-  const PLAYERCARDS: JSX.Element[] = createCardDeck(northernRealms);
-  const ENEMYCARDS: JSX.Element[] = createCardDeck(northernRealms);
+  const PLAYERCARDS: CompleteCard[] = createCardDeck(northernRealms);
+  const ENEMYCARDS: CompleteCard[] = createCardDeck(northernRealms);
 
-  const [playerRowOneCards, setPlayerRowOneCards] = useState<JSX.Element[]>([]);
-  const [playerRowTwoCards, setPlayerRowTwoCards] = useState<JSX.Element[]>([]);
-  const [playerRowThreeCards, setPlayerRowThreeCards] = useState<JSX.Element[]>(
-    []
+  const [playerRowOneCards, setPlayerRowOneCards] = useState<CompleteCard[]>(
+    [],
   );
+  const [playerRowTwoCards, setPlayerRowTwoCards] = useState<CompleteCard[]>(
+    [],
+  );
+  const [playerRowThreeCards, setPlayerRowThreeCards] = useState<
+    CompleteCard[]
+  >([]);
   const [playerHasPassed, setPlayerHasPassed] = useState(false);
   const [playerLives, setPlayerLives] = useState(2);
 
   const [playerCardsInHand, setPlayerCardsInHand] =
-    useState<JSX.Element[]>(PLAYERCARDS);
+    useState<CompleteCard[]>(PLAYERCARDS);
   const playerOne = new PlayerCards(
     playerRowOneCards,
     playerRowTwoCards,
     playerRowThreeCards,
-    playerCardsInHand
+    playerCardsInHand,
   );
 
-  const [enemyRowOneCards, setEnemyRowOneCards] = useState<JSX.Element[]>([]);
-  const [enemyRowTwoCards, setEnemyRowTwoCards] = useState<JSX.Element[]>([]);
-  const [enemyRowThreeCards, setEnemyRowThreeCards] = useState<JSX.Element[]>(
-    []
+  const [enemyRowOneCards, setEnemyRowOneCards] = useState<CompleteCard[]>([]);
+  const [enemyRowTwoCards, setEnemyRowTwoCards] = useState<CompleteCard[]>([]);
+  const [enemyRowThreeCards, setEnemyRowThreeCards] = useState<CompleteCard[]>(
+    [],
   );
   const [enemyHasPassed, setEnemyHasPassed] = useState(false);
   const [enemyLives, setEnemyLives] = useState(2);
 
   const [enemyCardsInHand, setEnemyCardsInHand] =
-    useState<JSX.Element[]>(ENEMYCARDS);
+    useState<CompleteCard[]>(ENEMYCARDS);
   const playerTwo = new PlayerCards(
     enemyRowOneCards,
     enemyRowTwoCards,
     enemyRowThreeCards,
-    enemyCardsInHand
+    enemyCardsInHand,
   );
 
   const [playerTurn, setPlayerTurn] = useState<PlayerType>(BoardPlayer.PLAYER);
@@ -52,8 +57,8 @@ export default function Game() {
    */
   function PlayCard(cardPlayed: number, player: PlayerType) {
     if (player === BoardPlayer.PLAYER) {
-      const card: JSX.Element = playerCardsInHand[cardPlayed];
-      const newHand: JSX.Element[] = playerCardsInHand
+      const card: CompleteCard = playerCardsInHand[cardPlayed];
+      const newHand: CompleteCard[] = playerCardsInHand
         .slice(0, cardPlayed)
         .concat(playerCardsInHand.slice(cardPlayed + 1));
       setPlayerCardsInHand(newHand);
@@ -73,8 +78,8 @@ export default function Game() {
       }
     }
     if (player === BoardPlayer.ENEMY) {
-      const card: JSX.Element = enemyCardsInHand[cardPlayed];
-      const newHand: JSX.Element[] = enemyCardsInHand
+      const card: CompleteCard = enemyCardsInHand[cardPlayed];
+      const newHand: CompleteCard[] = enemyCardsInHand
         .slice(0, cardPlayed)
         .concat(enemyCardsInHand.slice(cardPlayed + 1));
       setEnemyCardsInHand(newHand);

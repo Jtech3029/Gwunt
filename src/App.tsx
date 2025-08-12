@@ -8,36 +8,9 @@ import triss from "./assets/triss_enhanced.jpg?url";
 import phil from "./assets/phil.jpg?url";
 import yen from "./assets/yen.jpg?url";
 
-enum Glimmers {
-  GOLD = "via-yellow-200",
-  WHITE = "via-white",
-}
-
-enum Shadows {
-  BLUE = "#06b6d440",
-  GOLD = "#ffbf0050",
-}
+import * as Utils from "./UI_Elements/UI_Utilities.ts";
 
 function App() {
-  const transitionConfig = useMemo(
-    () => ({
-      boxShadow: {
-        duration: 2,
-        repeat: Infinity,
-        repeatType: "reverse" as const, // Add 'as const' to fix the type
-      },
-    }),
-    [],
-  );
-
-  const hoverAnimation = useMemo(
-    () => ({
-      boxShadow: `0 0 40px 30px ${Shadows.BLUE}`,
-      y: -20,
-    }),
-    [],
-  );
-
   return (
     <>
       <BrowserRouter>
@@ -49,27 +22,27 @@ function App() {
               <div className="h-screen w-screen flex items-center justify-center bg-black gap-8">
                 <UpdatedCard
                   img={triss}
-                  shadow={Shadows.BLUE}
-                  glimmer={Glimmers.GOLD}
+                  shadow={Utils.Shadows.BLUE}
+                  glimmer={Utils.Glimmers.GOLD}
                   center={48}
-                  transitionConfig={transitionConfig}
-                  hoverConfig={hoverAnimation}
+                  transitionConfig={Utils.useTransitionConfig()}
+                  hoverConfig={Utils.useHoverConfig(Utils.HoverColors.PINK)}
                 />
                 <UpdatedCard
                   img={phil}
-                  shadow={Shadows.BLUE}
-                  glimmer={Glimmers.GOLD}
+                  shadow={Utils.Shadows.BLUE}
+                  glimmer={Utils.Glimmers.GOLD}
                   center={0}
-                  transitionConfig={transitionConfig}
-                  hoverConfig={hoverAnimation}
+                  transitionConfig={Utils.useTransitionConfig()}
+                  hoverConfig={Utils.useHoverConfig(Utils.HoverColors.PINK)}
                 />
                 <UpdatedCard
                   img={yen}
-                  shadow={Shadows.GOLD}
-                  glimmer={Glimmers.WHITE}
+                  shadow={Utils.Shadows.GOLD}
+                  glimmer={Utils.Glimmers.WHITE}
                   center={76.5}
-                  transitionConfig={transitionConfig}
-                  hoverConfig={hoverAnimation}
+                  transitionConfig={Utils.useTransitionConfig()}
+                  hoverConfig={Utils.useHoverConfig(Utils.HoverColors.PINK)}
                 />
               </div>
             }

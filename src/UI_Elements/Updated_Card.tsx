@@ -85,10 +85,11 @@ export default function UpdatedCard({
     );
   };
 
+  //default is w-60 and h-100
   return (
     <>
       <motion.div
-        className="w-60 h-100 bg-cover relative overflow-hidden rounded-xl "
+        className="w-15 h-25 bg-cover relative overflow-hidden rounded-xl "
         onHoverStart={() => {
           setShowGlimmer(true);
         }}

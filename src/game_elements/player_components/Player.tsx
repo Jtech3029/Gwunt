@@ -26,7 +26,7 @@ const Player: FC<PlayerProps> = (props: PlayerProps) => {
     if (
       props.playerTurn === props.player &&
       cardPlayed != -1 &&
-      rowChosen === props.cards.cardsInHand[cardPlayed].props.cardClass
+      rowChosen === props.cards.cardsInHand[cardPlayed].getCardClass()
     ) {
       setConfirmMove(true);
     }
