@@ -1,4 +1,5 @@
 import type { JSX } from "react";
+import React from "react";
 import UpdatedCard from "./Updated_Card";
 
 export interface CompleteCardProps {
@@ -28,8 +29,7 @@ class CompleteCard {
       center: this.cardData.center,
     };
 
-    const element = UpdatedCard(props);
-    return element;
+    return React.createElement(UpdatedCard, props);
   }
 
   public getName(): string {

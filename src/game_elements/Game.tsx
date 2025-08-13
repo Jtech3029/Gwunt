@@ -63,13 +63,27 @@ export default function Game() {
         .concat(playerCardsInHand.slice(cardPlayed + 1));
       setPlayerCardsInHand(newHand);
 
-      if (card.props.cardClass === CardClass.MELEE) {
-        setPlayerRowOneCards([...playerRowOneCards, card]);
-      } else if (card.props.cardClass === CardClass.RANGED) {
-        setPlayerRowTwoCards([...playerRowTwoCards, card]);
-      } else if (card.props.cardClass === CardClass.SUPPORT) {
-        setPlayerRowThreeCards([...playerRowThreeCards, card]);
+      // if (card.props.cardClass === CardClass.MELEE) {
+      //   setPlayerRowOneCards([...playerRowOneCards, card]);
+      // } else if (card.props.cardClass === CardClass.RANGED) {
+      //   setPlayerRowTwoCards([...playerRowTwoCards, card]);
+      // } else if (card.props.cardClass === CardClass.SUPPORT) {
+      //   setPlayerRowThreeCards([...playerRowThreeCards, card]);
+      // }
+      switch (card.getCardClass()) {
+        case CardClass.MELEE:
+          setPlayerRowOneCards([...playerRowOneCards, card]);
+          break;
+        case CardClass.RANGED:
+          setPlayerRowTwoCards([...playerRowTwoCards, card]);
+          break;
+        case CardClass.SUPPORT:
+          setPlayerRowThreeCards([...playerRowThreeCards, card]);
+          break;
+        default:
+          console.log("Error");
       }
+
       if (!enemyHasPassed) {
         setPlayerTurn(BoardPlayer.ENEMY);
       }
@@ -84,11 +98,11 @@ export default function Game() {
         .concat(enemyCardsInHand.slice(cardPlayed + 1));
       setEnemyCardsInHand(newHand);
 
-      if (card.props.cardClass === CardClass.MELEE) {
+      if (card.getCardClass() === CardClass.MELEE) {
         setEnemyRowOneCards([...enemyRowOneCards, card]);
-      } else if (card.props.cardClass === CardClass.RANGED) {
+      } else if (card.getCardClass() === CardClass.RANGED) {
         setEnemyRowTwoCards([...enemyRowTwoCards, card]);
-      } else if (card.props.cardClass === CardClass.SUPPORT) {
+      } else if (card.getCardClass() === CardClass.SUPPORT) {
         setEnemyRowThreeCards([...enemyRowThreeCards, card]);
       }
       if (!playerHasPassed) {

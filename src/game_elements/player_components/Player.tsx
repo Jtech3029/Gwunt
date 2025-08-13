@@ -17,6 +17,7 @@ const Player: FC<PlayerProps> = (props: PlayerProps) => {
   const [confirmMove, setConfirmMove] = useState<boolean | null>(null);
 
   const selectCard = (index: number) => {
+    console.log(index);
     if (props.playerTurn === props.player) {
       setCardPlayed(index);
     }

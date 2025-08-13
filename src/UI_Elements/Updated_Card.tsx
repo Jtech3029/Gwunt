@@ -1,12 +1,35 @@
 import { motion, useAnimate } from "framer-motion";
-import { useEffect, useState } from "react";
-import { useHoverConfig, useTransitionConfig } from "./UI_Utilities";
+import { useEffect, useState, useMemo } from "react";
 
 interface CardProps {
   img: string;
   center?: number;
   glimmer: string;
   shadow: string;
+}
+
+function useTransitionConfig() {
+  const x = useMemo(
+    () => ({
+      boxShadow: {
+        duration: 2,
+        repeat: Infinity,
+        repeatType: "reverse" as const,
+      },
+    }),
+    [],
+  );
+  return x;
+}
+
+function useHoverConfig(color: string) {
+  return useMemo(
+    () => ({
+      boxShadow: `0 0 40px 30px ${color}`,
+      y: -20,
+    }),
+    [color],
+  );
 }
 
 export default function UpdatedCard({
@@ -84,7 +107,6 @@ export default function UpdatedCard({
         }}
         onHoverEnd={() => {
           setShowGlimmer(false);
-          console.log("HELLO");
         }}
         initial="rest"
         animate="rest"
