@@ -12,6 +12,7 @@ export interface CompleteCardProps {
   damage: number;
   cardClass: string;
   isHero: boolean;
+  cardSpecial: number;
 }
 
 class CompleteCard {
@@ -44,6 +45,10 @@ class CompleteCard {
   }
   public isHero(): boolean {
     return this.cardData.isHero;
+  }
+
+  public getCardSpecial(): number {
+    return this.cardData.cardSpecial;
   }
 }
 

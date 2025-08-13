@@ -38,4 +38,3 @@ class PlayerCards {
   }
 }
 export default PlayerCards;
-

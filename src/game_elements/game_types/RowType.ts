@@ -1,10 +1,10 @@
-const CardClass = {
-    MELEE: "MELEE",
-    RANGED: "RANGED",
-    SUPPORT: "SUPPORT",
+export const CardClass = {
+  MELEE: "MELEE",
+  RANGED: "RANGED",
+  SUPPORT: "SUPPORT",
 } as const;
 
-type CardType = typeof CardClass[keyof typeof CardClass];
+type CardType = (typeof CardClass)[keyof typeof CardClass];
 
-export type { CardType } ;
-export { CardClass };
+export type { CardType };
+

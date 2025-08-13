@@ -28,6 +28,7 @@ import ves from "../assets/Northern Realms/troops/Ves.png";
 import yarpen_zigrin from "../assets/Northern Realms/troops/Yarpen Zigrin.png";
 import type { CompleteCardProps } from "../UI_Elements/CompleteCard";
 import { Glimmers, Shadows } from "../UI_Elements/UI_Utilities";
+import { CardSpecials } from "./game_types/CardSpecials";
 
 import { CardClass, type CardType } from "./game_types/RowType";
 
@@ -41,6 +42,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Ballista",
@@ -51,6 +53,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Blue Stripes Commando",
@@ -61,6 +64,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.TIGHT_BOND,
   },
   {
     name: "Catapult",
@@ -71,6 +75,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Crinfrid Reavers Dragon Hunter",
@@ -81,6 +86,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.TIGHT_BOND,
   },
   {
     name: "Dethmold",
@@ -91,6 +97,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Dun Banner Medic",
@@ -101,26 +108,29 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.MEDIC,
   },
   {
     name: "Esterad Thyssen",
     img: esterad_thyssen,
     damage: 10,
     cardClass: CardClass.MELEE,
-    isHero: false,
+    isHero: true,
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "John Natalis",
     img: john_natalis,
     damage: 10,
     cardClass: CardClass.MELEE,
-    isHero: false,
+    isHero: true,
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Kaedweni Siege Expert",
@@ -131,6 +141,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.MORALE,
   },
   {
     name: "Keira Metz",
@@ -141,6 +152,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Philippa Eilhart",
@@ -151,6 +163,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Poor Fucking Infantry",
@@ -161,6 +174,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Prince Stennis",
@@ -171,6 +185,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.SPY,
   },
   {
     name: "Redanian Foot Soldier",
@@ -181,6 +196,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Redanian Foot Soldier",
@@ -191,6 +207,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Sabrina Glevissig",
@@ -201,6 +218,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Sheldon Skaggs",
@@ -211,6 +229,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Siege Tower",
@@ -221,6 +240,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Siegfried of Denesle",
@@ -231,6 +251,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Sigismund Dijkstra",
@@ -241,6 +262,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.SPY,
   },
   {
     name: "Síle de Tansarville ",
@@ -251,6 +273,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Thaler",
@@ -261,6 +284,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.SPY,
   },
   {
     name: "Trebuchet",
@@ -271,6 +295,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Trebuchet",
@@ -281,16 +306,18 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Vernon Roche",
     img: vernon_roche,
     damage: 1,
     cardClass: CardClass.SUPPORT,
-    isHero: false,
+    isHero: true,
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Ves",
@@ -301,6 +328,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
   {
     name: "Yarpen Zigrin",
@@ -311,6 +339,7 @@ const northernRealms: CompleteCardProps[] = [
     shadow: Shadows.BLUE,
     glimmer: Glimmers.WHITE,
     center: 50,
+    cardSpecial: CardSpecials.NONE,
   },
 ];
 

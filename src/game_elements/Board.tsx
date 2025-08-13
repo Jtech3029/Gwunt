@@ -3,6 +3,10 @@ import { BoardPlayer, type PlayerType } from "./game_types/PlayerType";
 import Enemy from "./player_components/Enemy";
 import Player from "./player_components/Player";
 import type PlayerCards from "./player_components/PlayerCards";
+import {
+  AI_Difficulties,
+  type PlayerCardsOnBoard,
+} from "./ai_algorithms/AlgorithmsUtilities";
 
 interface boardProps {
   playerTurn: PlayerType;
@@ -14,6 +18,12 @@ interface boardProps {
 }
 
 export default function Board(props: boardProps) {
+  const playerPlayedCards: PlayerCardsOnBoard = {
+    rowOne: props.PlayerCards.rowOneCards,
+    rowTwo: props.PlayerCards.rowTwoCards,
+    rowThree: props.PlayerCards.rowThreeCards,
+  };
+
   return (
     <div className="max-h-dvh max-w-dvw flex bg-gradient-to-br from-stone-900 via-amber-950 to-stone-800">
       <GameStatus
@@ -27,8 +37,11 @@ export default function Board(props: boardProps) {
             playerTurn={props.playerTurn}
             cards={props.EnemyCards}
             playCard={props.PlayCard}
-            difficulty={1}
+            difficulty={AI_Difficulties.EASY}
             passTurn={props.passTurn}
+            playerScore={props.playerDamage}
+            aiScore={props.enemyDamage}
+            playerPlayedCards={playerPlayedCards}
           />
         </div>
         <hr></hr>

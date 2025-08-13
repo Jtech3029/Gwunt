@@ -3,42 +3,77 @@ import { useEffect } from "react";
 import { CardClass } from "../game_types/RowType";
 import type PlayerCards from "./PlayerCards";
 import type { PlayerType } from "../game_types/PlayerType";
+import {
+  AI_Difficulties,
+  type AlgorithmProps,
+  type PlayerCardsOnBoard,
+} from "../ai_algorithms/AlgorithmsUtilities";
+import EasyAI from "../ai_algorithms/EasyAI";
 
 interface EnemyProps {
   cards: PlayerCards;
   player: PlayerType;
   playerTurn: PlayerType;
   playCard: (cardPlayed: number, player: PlayerType) => void;
-  difficulty: number;
+  difficulty: string;
+  playerPlayedCards: PlayerCardsOnBoard;
+  playerScore: number;
+  aiScore: number;
 }
 
 function Enemy(props: EnemyProps) {
   function selectRow() {}
 
   useEffect(() => {
-    if (props.playerTurn === props.player && props.cards.cardsInHand.length != 0) {
-      playAIMove();
-    }
-    else if(props.cards.cardsInHand.length == 0) {
+    if (
+      props.playerTurn === props.player &&
+      props.cards.cardsInHand.length != 0
+    ) {
+      playAIMove(props.difficulty);
+    } else if (props.cards.cardsInHand.length == 0) {
       props.passTurn();
     }
   });
 
-  function playAIMove() {
-    switch (props.difficulty) {
-      case 1:
-        props.playCard(
-          Math.floor(Math.random() * props.cards.cardsInHand.length),
-          props.player
-        );
+  function playAIMove(props: EnemyProps, difficulty: string) {
+    const algorithmProps: AlgorithmProps = {
+      playerCards: props.playerPlayedCards,
+      aiHand: props.cards,
+      playerScore: props.playerScore,
+      aiScore: props.aiScore,
+    };
+
+    switch (difficulty) {
+      case AI_Difficulties.EASY:
+        // props.playCard(
+        //   Math.floor(Math.random() * props.cards.cardsInHand.length),
+        //   props.player,
+        // );
+        props.playCard(EasyAI(algorithmProps), props.player);
         break;
-      case 2:
+      case AI_Difficulties.MEDIUM:
         break;
-      case 3:
+      case AI_Difficulties.HARD:
+        break;
+      case AI_Difficulties.GOD:
         break;
       default:
-        break;
     }
+
+    // switch (props.difficulty) {
+    //   case 1:
+    //     props.playCard(
+    //       Math.floor(Math.random() * props.cards.cardsInHand.length),
+    //       props.player
+    //     );
+    //     break;
+    //   case 2:
+    //     break;
+    //   case 3:
+    //     break;
+    //   default:
+    //     break;
+    // }
   }
   return (
     <>

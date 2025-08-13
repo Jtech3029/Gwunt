@@ -1,0 +1,15 @@
+export const CardSpecials = {
+  AGILE: 0,
+  MEDIC: 1,
+  MORALE: 2,
+  MUSTER: 3,
+  SPY: 4,
+  TIGHT_BOND: 5,
+  BERSERKER: 6,
+  COMMANDER: 7,
+  DECOY: 8,
+  MARDROEME: 9,
+  SCORCH: 10,
+  AVENGER: 11,
+  NONE: 12,
+};
