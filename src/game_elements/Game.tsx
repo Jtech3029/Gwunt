@@ -52,6 +52,10 @@ export default function Game() {
   );
 
   const [playerTurn, setPlayerTurn] = useState<PlayerType>(BoardPlayer.PLAYER);
+
+  const [playerScore, setPlayerScore] = useState<number>(0);
+  const [enemyScore, setEnemyScore] = useState<number>(0);
+
   /**
    * Move the played card to the appropriate row based on the card chosen.
    */
@@ -124,38 +128,69 @@ export default function Game() {
     }
   }
 
-  function checkWinner() {
-    let playerScore = 0;
-    let enemyScore = 0;
+  function calculateScore() {
+    //TODO make more efficient
+    let newScore = 0;
     playerRowOneCards.forEach((element) => {
-      playerScore = element.props.damage;
+      newScore += element.getDamage();
     });
+
     playerRowTwoCards.forEach((element) => {
-      playerScore = element.props.damage;
+      newScore += element.getDamage();
     });
+
     playerRowThreeCards.forEach((element) => {
-      playerScore = element.props.damage;
+      newScore += element.getDamage();
     });
+    setPlayerScore(newScore);
 
+    let newEnemyScore = 0;
     enemyRowOneCards.forEach((element) => {
-      enemyScore = element.props.damage;
-    });
-    enemyRowTwoCards.forEach((element) => {
-      enemyScore = element.props.damage;
-    });
-    enemyRowThreeCards.forEach((element) => {
-      enemyScore = element.props.damage;
+      newEnemyScore += element.getDamage();
     });
 
-    if (playerScore > enemyScore) {
-      setEnemyLives(enemyLives - 1);
-    } else if (playerScore < enemyScore) {
-      setPlayerLives(playerLives - 1);
-    } else {
-      setEnemyLives(enemyLives - 1);
-      setPlayerLives(playerLives - 1);
-    }
+    enemyRowTwoCards.forEach((element) => {
+      newEnemyScore += element.getDamage();
+    });
+
+    enemyRowThreeCards.forEach((element) => {
+      newEnemyScore += element.getDamage();
+    });
+    setEnemyScore(newEnemyScore);
   }
+
+  // function checkWinner() {
+  //   let playerScore = 0;
+  //   let enemyScore = 0;
+  //   playerRowOneCards.forEach((element) => {
+  //     playerScore = element.props.damage;
+  //   });
+  //   playerRowTwoCards.forEach((element) => {
+  //     playerScore = element.props.damage;
+  //   });
+  //   playerRowThreeCards.forEach((element) => {
+  //     playerScore = element.props.damage;
+  //   });
+  //
+  //   enemyRowOneCards.forEach((element) => {
+  //     enemyScore = element.props.damage;
+  //   });
+  //   enemyRowTwoCards.forEach((element) => {
+  //     enemyScore = element.props.damage;
+  //   });
+  //   enemyRowThreeCards.forEach((element) => {
+  //     enemyScore = element.props.damage;
+  //   });
+  //
+  //   if (playerScore > enemyScore) {
+  //     setEnemyLives(enemyLives - 1);
+  //   } else if (playerScore < enemyScore) {
+  //     setPlayerLives(playerLives - 1);
+  //   } else {
+  //     setEnemyLives(enemyLives - 1);
+  //     setPlayerLives(playerLives - 1);
+  //   }
+  // }
 
   function clearBoard() {
     setPlayerRowOneCards([]);
@@ -168,11 +203,12 @@ export default function Game() {
   }
 
   useEffect(() => {
+    calculateScore();
     if (playerHasPassed && enemyHasPassed) {
-      checkWinner();
+      // checkWinner();
       clearBoard();
     }
-  }, [playerHasPassed, enemyHasPassed]);
+  }, [playerHasPassed, enemyHasPassed, calculateScore]);
   return (
     <>
       <Board
@@ -181,6 +217,8 @@ export default function Game() {
         EnemyCards={playerTwo}
         PlayCard={PlayCard}
         passTurn={passTurn}
+        playerDamage={playerScore}
+        enemyDamage={enemyScore}
       />
     </>
   );

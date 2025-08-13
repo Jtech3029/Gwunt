@@ -9,11 +9,17 @@ interface boardProps {
   PlayerCards: PlayerCards;
   EnemyCards: PlayerCards;
   PlayCard: (cardPlayed: number, player: PlayerType) => void;
+  playerDamage: number;
+  enemyDamage: number;
 }
+
 export default function Board(props: boardProps) {
   return (
     <div className="max-h-dvh max-w-dvw flex bg-gradient-to-br from-stone-900 via-amber-950 to-stone-800">
-      <GameStatus />
+      <GameStatus
+        enemyDamage={props.enemyDamage}
+        playerDamage={props.playerDamage}
+      />
       <div className="h-dvh w-65/100">
         <div>
           <Enemy
