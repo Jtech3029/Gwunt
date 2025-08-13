@@ -6,17 +6,6 @@ export interface CompleteCardProps {
   shadow: string;
   glimmer: string;
   center: number;
-  transitionConfig: {
-    boxShadow: {
-      duration: number;
-      repeat: number;
-      repeatType: "reverse";
-    };
-  };
-  hoverConfig: {
-    boxShadow: string;
-    y: number;
-  };
 
   name: string;
   damage: number;
@@ -37,8 +26,6 @@ class CompleteCard {
       shadow: this.cardData.shadow,
       glimmer: this.cardData.glimmer,
       center: this.cardData.center,
-      transitionConfig: this.cardData.transitionConfig,
-      hoverConfig: this.cardData.hoverConfig,
     };
 
     const element = UpdatedCard(props);

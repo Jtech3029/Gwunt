@@ -1,21 +1,17 @@
 import { useMemo } from "react";
 
-export enum Glimmers {
-  GOLD = "via-yellow-200",
-  WHITE = "via-white",
-}
+export const Glimmers = {
+  GOLD: "via-yellow-200",
+  WHITE: "via-white",
+} as const;
 
-export enum Shadows {
-  BLUE = "#06b6d440",
-  GOLD = "#ffbf0050",
-}
-
-export enum HoverColors {
-  PINK = "#f4c7d9",
-}
+export const Shadows = {
+  BLUE: "#06b6d440",
+  GOLD: "#ffbf0050",
+} as const;
 
 export function useTransitionConfig() {
-  return useMemo(
+  const x = useMemo(
     () => ({
       boxShadow: {
         duration: 2,
@@ -25,6 +21,7 @@ export function useTransitionConfig() {
     }),
     [],
   );
+  return x;
 }
 
 export function useHoverConfig(color: string) {

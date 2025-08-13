@@ -1,22 +1,12 @@
 import { motion, useAnimate } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useHoverConfig, useTransitionConfig } from "./UI_Utilities";
 
 interface CardProps {
   img: string;
   center?: number;
   glimmer: string;
   shadow: string;
-  transitionConfig: {
-    boxShadow: {
-      duration: number;
-      repeat: number;
-      repeatType: "reverse";
-    };
-  };
-  hoverConfig: {
-    boxShadow: string;
-    y: number;
-  };
 }
 
 export default function UpdatedCard({
@@ -24,8 +14,6 @@ export default function UpdatedCard({
   center = 50,
   glimmer,
   shadow,
-  transitionConfig,
-  hoverConfig,
 }: CardProps) {
   const [showGlimmer, setShowGlimmer] = useState<boolean>(false);
 
@@ -86,6 +74,7 @@ export default function UpdatedCard({
   };
 
   //default is w-60 and h-100
+  //w-15 h-25
   return (
     <>
       <motion.div
@@ -95,15 +84,22 @@ export default function UpdatedCard({
         }}
         onHoverEnd={() => {
           setShowGlimmer(false);
+          console.log("HELLO");
         }}
-        whileHover={hoverConfig}
-        transition={transitionConfig}
+        initial="rest"
+        animate="rest"
+        whileHover="hover"
+        variants={{
+          hover: useHoverConfig(shadow),
+        }}
+        transition={useTransitionConfig()}
         style={{
           backgroundImage: `url(${img})`,
           backgroundPosition: `${center}%`,
         }}
       >
         {showGlimmer && <Glimmer />}
+        <p className="text-white"> {showGlimmer}</p>
       </motion.div>
     </>
   );

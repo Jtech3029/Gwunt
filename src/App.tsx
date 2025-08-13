@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Game from "./game_elements/Game";
@@ -25,24 +24,18 @@ function App() {
                   shadow={Utils.Shadows.BLUE}
                   glimmer={Utils.Glimmers.GOLD}
                   center={48}
-                  transitionConfig={Utils.useTransitionConfig()}
-                  hoverConfig={Utils.useHoverConfig(Utils.HoverColors.PINK)}
                 />
                 <UpdatedCard
                   img={phil}
                   shadow={Utils.Shadows.BLUE}
                   glimmer={Utils.Glimmers.GOLD}
                   center={0}
-                  transitionConfig={Utils.useTransitionConfig()}
-                  hoverConfig={Utils.useHoverConfig(Utils.HoverColors.PINK)}
                 />
                 <UpdatedCard
                   img={yen}
                   shadow={Utils.Shadows.GOLD}
                   glimmer={Utils.Glimmers.WHITE}
                   center={76.5}
-                  transitionConfig={Utils.useTransitionConfig()}
-                  hoverConfig={Utils.useHoverConfig(Utils.HoverColors.PINK)}
                 />
               </div>
             }
