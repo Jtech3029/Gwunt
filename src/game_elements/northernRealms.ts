@@ -26,6 +26,7 @@ import trebuchet_2 from "../assets/Northern Realms/troops/Trebuchet  2.png";
 import vernon_roche from "../assets/Northern Realms/troops/Vernon Roche.png";
 import ves from "../assets/Northern Realms/troops/Ves.png";
 import yarpen_zigrin from "../assets/Northern Realms/troops/Yarpen Zigrin.png";
+import scorch from "../assets/Neutrals/Scorch.png";
 import type { CompleteCardProps } from "../UI_Elements/CompleteCard";
 import { Glimmers, Shadows } from "../UI_Elements/UI_Utilities";
 import { CardSpecials } from "./game_types/CardSpecials";
@@ -340,6 +341,17 @@ const northernRealms: CompleteCardProps[] = [
     glimmer: Glimmers.WHITE,
     center: 50,
     cardSpecial: CardSpecials.NONE,
+  },
+  {
+    name: "Scorch",
+    img: scorch,
+    damage: 2,
+    cardClass: CardClass.MELEE,
+    isHero: false,
+    shadow: Shadows.BLUE,
+    glimmer: Glimmers.GOLD,
+    center: 50,
+    cardSpecial: CardSpecials.SCORCH,
   },
 ];
 

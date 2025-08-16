@@ -15,6 +15,7 @@ interface EnemyProps {
   player: PlayerType;
   playerTurn: PlayerType;
   playCard: (cardPlayed: number, player: PlayerType) => void;
+  passTurn: (player: PlayerType) => void;
   difficulty: string;
   playerPlayedCards: PlayerCardsOnBoard;
   playerScore: number;
@@ -29,9 +30,9 @@ function Enemy(props: EnemyProps) {
       props.playerTurn === props.player &&
       props.cards.cardsInHand.length != 0
     ) {
-      playAIMove(props.difficulty);
+      playAIMove(props, props.difficulty);
     } else if (props.cards.cardsInHand.length == 0) {
-      props.passTurn();
+      props.passTurn(props.player);
     }
   });
 
@@ -45,11 +46,11 @@ function Enemy(props: EnemyProps) {
 
     switch (difficulty) {
       case AI_Difficulties.EASY:
-        // props.playCard(
-        //   Math.floor(Math.random() * props.cards.cardsInHand.length),
-        //   props.player,
-        // );
-        props.playCard(EasyAI(algorithmProps), props.player);
+        {
+          const idx = EasyAI(algorithmProps);
+          console.log("IDX: " + idx);
+          props.playCard(idx, props.player);
+        }
         break;
       case AI_Difficulties.MEDIUM:
         break;
@@ -59,21 +60,6 @@ function Enemy(props: EnemyProps) {
         break;
       default:
     }
-
-    // switch (props.difficulty) {
-    //   case 1:
-    //     props.playCard(
-    //       Math.floor(Math.random() * props.cards.cardsInHand.length),
-    //       props.player
-    //     );
-    //     break;
-    //   case 2:
-    //     break;
-    //   case 3:
-    //     break;
-    //   default:
-    //     break;
-    // }
   }
   return (
     <>

@@ -15,6 +15,7 @@ interface boardProps {
   PlayCard: (cardPlayed: number, player: PlayerType) => void;
   playerDamage: number;
   enemyDamage: number;
+  passTurn: (player: PlayerType) => void;
 }
 
 export default function Board(props: boardProps) {

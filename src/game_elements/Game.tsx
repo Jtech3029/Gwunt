@@ -6,6 +6,7 @@ import PlayerCards from "./player_components/PlayerCards";
 import createCardDeck from "./CreateCardDeck";
 import northernRealms from "./northernRealms";
 import CompleteCard from "../UI_Elements/CompleteCard";
+import PassedBar from "../UI_Elements/Passed_Bar";
 
 //Game.tsx will hold the game logic until we transport the game to a backend
 //until them, we'll use this component to hold all the game logic and act as the backend
@@ -90,12 +91,20 @@ export default function Game() {
 
       if (!enemyHasPassed) {
         setPlayerTurn(BoardPlayer.ENEMY);
+      } else {
+        console.log("SUP");
       }
+
       if (newHand.length <= 0) {
         passTurn(player);
       }
     }
     if (player === BoardPlayer.ENEMY) {
+      if (cardPlayed == -1) {
+        passTurn(player);
+        return;
+      }
+
       const card: CompleteCard = enemyCardsInHand[cardPlayed];
       const newHand: CompleteCard[] = enemyCardsInHand
         .slice(0, cardPlayed)
@@ -192,6 +201,26 @@ export default function Game() {
   //   }
   // }
 
+  const [timer, setTimer] = useState<number>(0);
+  const [started, setStarted] = useState<boolean>(false);
+  const [wannaPass, setWannaPass] = useState<boolean>(false);
+
+  function startTimer(e: KeyboardEvent) {
+    if (e.code == "Space" && started == false) {
+      const x = setTimeout(() => {
+        setWannaPass(true);
+      }, 500);
+
+      setTimer(x);
+      setStarted(true);
+    }
+  }
+
+  function endTimer() {
+    clearTimeout(timer);
+    setStarted(false);
+  }
+
   function clearBoard() {
     setPlayerRowOneCards([]);
     setPlayerRowTwoCards([]);
@@ -203,14 +232,23 @@ export default function Game() {
   }
 
   useEffect(() => {
+    window.addEventListener("keydown", startTimer);
+    window.addEventListener("keyup", endTimer);
+
     calculateScore();
     if (playerHasPassed && enemyHasPassed) {
       // checkWinner();
       clearBoard();
     }
+
+    return () => {
+      window.removeEventListener("keydown", startTimer);
+      window.removeEventListener("keyup", endTimer);
+    };
   }, [playerHasPassed, enemyHasPassed, calculateScore]);
+
   return (
-    <>
+    <div className="overflow-hidden h-full w-full">
       <Board
         playerTurn={playerTurn}
         PlayerCards={playerOne}
@@ -220,6 +258,7 @@ export default function Game() {
         playerDamage={playerScore}
         enemyDamage={enemyScore}
       />
-    </>
+      {wannaPass && <PassedBar />}
+    </div>
   );
 }
