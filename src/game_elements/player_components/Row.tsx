@@ -38,14 +38,14 @@ export default function Row(props: rowProps) {
 
   return (
     <div
-      className="h-[11.5dvh] flex justify-center opacity-50 border-2 border-amber-700/60 text-amber-400 mb-2 relative"
+      className="h-[11.5dvh] flex justify-center border-2 border-amber-700/60 text-amber-400 mb-2 relative"
       onClick={() => props.chooseRow(props.rowType)}
     >
       {props.cardsInRow.map((card: JSX.Element, index: number) => (
         <div
           key={index}
           ref={(el) => cardRefs.current[index] = el}
-          className="transition-transform hidden"
+          className="transition-transform"
           style={yes ? getCardPositions(index) : {transitionDuration: "1s"}}
         >
           {card}
